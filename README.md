@@ -100,6 +100,7 @@ Valid argument types are specified through the `$checks` parameter. A string, or
     - `array`
     - `null`
     - `callable`
+    - `notEmpty`: equivalent to `!empty()`
     - (an array of scalars for in_array check), e.g. `array('foo', 'bar')` will check for `in_array($arg, array('foo', 'bar'))`. NOTE: `ArgValidator::assert($arg, array('foo', 'bar'))` will be interpreted as instanceof checks against `foo` and `bar`. To specify an in_array check, wrap it in another array: `ArgValidator::assert($arg, array(array('foo', 'bar')))`.
     - (a string): assumed to be an instanceof check, should be a fully-qualified name of Class/Interface
 

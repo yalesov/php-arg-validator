@@ -29,6 +29,7 @@ class ArgValidator
      *  - 'array'
      *  - 'null'
      *  - 'callable'
+     *  - 'notEmpty'
      *  - (an array of scalars for in_array check)
      *    e.g. array('foo', 'bar') will check for
      *         in_array($arg, array('foo', 'bar'))
@@ -207,6 +208,9 @@ class ArgValidator
                 case 'callable':
                     if (is_callable($arg)) return true;
                     break;
+                case 'notEmpty':
+                    if (!empty($arg)) return true;
+                    break;
                 default:
                     if ($arg instanceof $check) return true;
             }
@@ -382,6 +386,7 @@ class ArgValidator
 
         $min = isset($checks['min']) ? (float)$checks['min'] : null;
         $max = isset($checks['max']) ? (float)$checks['max'] : null;
+        $oriChecks = $checks;
         self::trimChecks($checks);
 
         $validTypes = array();
@@ -423,6 +428,9 @@ class ArgValidator
                     }
                     $validTypes[] = $validType;
                     break;
+                case 'notEmpty':
+                    $validTypes[] = 'not empty';
+                    break;
                 case 'null':
                 case 'callable':
                 default:
@@ -431,7 +439,7 @@ class ArgValidator
         }
 
         $message = '';
-        if (isset($checks['arrayOf'])) {
+        if (isset($oriChecks['arrayOf'])) {
             $message .= 'an array of ';
         }
         $message .= '[' . implode(' / ', $validTypes) . ']';

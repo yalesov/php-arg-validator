@@ -351,6 +351,37 @@ class ArgValidatorTest extends \PHPUnit_Framework_TestCase
             ArgValidator::assert(new \StdClass, 'callable', false));
     }
 
+    public function testNotEmpty()
+    {
+        $this->assertTrue(
+            ArgValidator::assert(0, 'notEmpty', false));
+        $this->assertTrue(
+            ArgValidator::assert(0.0, 'notEmpty', false));
+        $this->assertTrue(
+            ArgValidator::assert('', 'notEmpty', false));
+        $this->assertTrue(
+            ArgValidator::assert(array(), 'notEmpty', false));
+        $this->assertTrue(
+            ArgValidator::assert(false, 'notEmpty', false));
+        $this->assertTrue(
+            ArgValidator::assert(null, 'notEmpty', false));
+
+        $this->assertFalse(
+            ArgValidator::assert(1, 'notEmpty', false));
+        $this->assertFalse(
+            ArgValidator::assert(1.0, 'notEmpty', false));
+        $this->assertFalse(
+            ArgValidator::assert('string', 'notEmpty', false));
+        $this->assertFalse(
+            ArgValidator::assert(array(1), 'notEmpty', false));
+        $this->assertFalse(
+            ArgValidator::assert(true, 'notEmpty', false));
+        $this->assertFalse(
+            ArgValidator::assert(function(){}, 'notEmpty', false));
+        $this->assertFalse(
+            ArgValidator::assert(new \StdClass, 'notEmpty', false));
+    }
+
     public function testInArray()
     {
         $this->assertTrue(
