@@ -163,6 +163,7 @@ class ArgValidator
 
         $min = isset($checks['min']) ? (float)$checks['min'] : null;
         $max = isset($checks['max']) ? (float)$checks['max'] : null;
+        self::trimChecks($checks);
 
         foreach ($checks as $check) {
             if (is_array($check)) {
@@ -205,11 +206,6 @@ class ArgValidator
                     break;
                 case 'callable':
                     if (is_callable($arg)) return true;
-                    break;
-                case 'arrayOf':
-                case 'min':
-                case 'max':
-                    // flags
                     break;
                 default:
                     if ($arg instanceof $check) return true;
@@ -382,8 +378,11 @@ class ArgValidator
      */
     protected static function assembleChecksError($checks)
     {
+        $checks = (array)$checks;
+
         $min = isset($checks['min']) ? (float)$checks['min'] : null;
         $max = isset($checks['max']) ? (float)$checks['max'] : null;
+        self::trimChecks($checks);
 
         $validTypes = array();
         foreach ((array)$checks as $check) {
@@ -424,11 +423,6 @@ class ArgValidator
                     }
                     $validTypes[] = $validType;
                     break;
-                case 'arrayOf':
-                case 'min':
-                case 'max':
-                    // flags
-                    break;
                 case 'null':
                 case 'callable':
                 default:
@@ -443,5 +437,20 @@ class ArgValidator
         $message .= '[' . implode(' / ', $validTypes) . ']';
 
         return $message;
+    }
+
+    /**
+     * remove FLAGS from $checks
+     *
+     * @param array|string $checks
+     */
+    public function trimChecks(&$checks)
+    {
+        $checks = (array)$checks;
+        if (isset($checks['min'])) unset($checks['min']);
+        if (isset($checks['max'])) unset($checks['max']);
+        if (($k = array_search('arrayOf', $checks)) !== false) {
+            unset($checks[$k]);
+        }
     }
 }
