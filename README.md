@@ -1,6 +1,6 @@
 # Heartsentwined\ArgValidator
 
-v1.0 [![Build Status](https://secure.travis-ci.org/heartsentwined/arg-validator.png)](http://travis-ci.org/heartsentwined/arg-validator)
+[![Build Status](https://secure.travis-ci.org/heartsentwined/arg-validator.png)](http://travis-ci.org/heartsentwined/arg-validator)
 
 Solving several function argument validation/typehinting issues in PHP:
 
