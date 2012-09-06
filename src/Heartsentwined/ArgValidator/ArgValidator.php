@@ -444,7 +444,7 @@ class ArgValidator
      *
      * @param array|string $checks
      */
-    public function trimChecks(&$checks)
+    public static function trimChecks(&$checks)
     {
         $checks = (array)$checks;
         if (isset($checks['min'])) unset($checks['min']);
