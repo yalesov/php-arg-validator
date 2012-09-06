@@ -49,7 +49,7 @@ class Foo {
 ```json
 {
     "require": {
-        "heartsentwined/arg-validator": "1.0.*"
+        "heartsentwined/arg-validator": "1.*"
     }
 }
 ```

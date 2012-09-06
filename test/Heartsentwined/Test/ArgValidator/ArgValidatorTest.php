@@ -64,7 +64,7 @@ class ArgValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testTrimChecks()
     {
-        $checks = array('arrayOf', 'int', 'min' => 0, 'max' => 1);
+        $checks = array('int', 'arrayOf', 'min' => 0, 'max' => 1);
         ArgValidator::trimChecks($checks);
         $this->assertSame(array('int'), $checks);
     }
