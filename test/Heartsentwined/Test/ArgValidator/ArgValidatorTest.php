@@ -354,32 +354,32 @@ class ArgValidatorTest extends \PHPUnit_Framework_TestCase
     public function testNotEmpty()
     {
         $this->assertTrue(
-            ArgValidator::assert(0, 'notEmpty', false));
+            ArgValidator::assert(1, 'notEmpty', false));
         $this->assertTrue(
-            ArgValidator::assert(0.0, 'notEmpty', false));
+            ArgValidator::assert(1.0, 'notEmpty', false));
         $this->assertTrue(
-            ArgValidator::assert('', 'notEmpty', false));
+            ArgValidator::assert('string', 'notEmpty', false));
         $this->assertTrue(
-            ArgValidator::assert(array(), 'notEmpty', false));
+            ArgValidator::assert(array(1), 'notEmpty', false));
         $this->assertTrue(
-            ArgValidator::assert(false, 'notEmpty', false));
+            ArgValidator::assert(true, 'notEmpty', false));
         $this->assertTrue(
-            ArgValidator::assert(null, 'notEmpty', false));
+            ArgValidator::assert(function(){}, 'notEmpty', false));
+        $this->assertTrue(
+            ArgValidator::assert(new \StdClass, 'notEmpty', false));
 
         $this->assertFalse(
-            ArgValidator::assert(1, 'notEmpty', false));
+            ArgValidator::assert(0, 'notEmpty', false));
         $this->assertFalse(
-            ArgValidator::assert(1.0, 'notEmpty', false));
+            ArgValidator::assert(0.0, 'notEmpty', false));
         $this->assertFalse(
-            ArgValidator::assert('string', 'notEmpty', false));
+            ArgValidator::assert('', 'notEmpty', false));
         $this->assertFalse(
-            ArgValidator::assert(array(1), 'notEmpty', false));
+            ArgValidator::assert(array(), 'notEmpty', false));
         $this->assertFalse(
-            ArgValidator::assert(true, 'notEmpty', false));
+            ArgValidator::assert(false, 'notEmpty', false));
         $this->assertFalse(
-            ArgValidator::assert(function(){}, 'notEmpty', false));
-        $this->assertFalse(
-            ArgValidator::assert(new \StdClass, 'notEmpty', false));
+            ArgValidator::assert(null, 'notEmpty', false));
     }
 
     public function testInArray()
