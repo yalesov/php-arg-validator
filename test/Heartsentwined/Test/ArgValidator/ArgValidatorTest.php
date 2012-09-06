@@ -52,6 +52,16 @@ class ArgValidatorTest extends \PHPUnit_Framework_TestCase
             array(1, '1'), array('arrayOf', 'int'), false));
     }
 
+    public function testMinMaxSyntax()
+    {
+        $this->assertTrue(ArgValidator::assert(
+            1, array('int', 'min' => 1), false));
+        $this->assertTrue(ArgValidator::assert(
+            1, array('int', 'max' => 1), false));
+        $this->assertTrue(ArgValidator::assert(
+            1, array('int', 'min' => 1, 'max' => 1), false));
+    }
+
     public function testCheckNumRange()
     {
         $this->assertTrue(
