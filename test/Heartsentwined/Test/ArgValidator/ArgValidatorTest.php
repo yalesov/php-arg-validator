@@ -490,18 +490,18 @@ class ArgValidatorTest extends \PHPUnit_Framework_TestCase
         require_once __DIR__ . '/ClassAsset.php';
 
         $this->assertTrue(ArgValidator::assertClassConstant(
-            '\ClassConst', array('FOO'), false));
+            'ClassConst', array('FOO'), false));
         $this->assertTrue(ArgValidator::assertClassConstant(
-            '\ClassConst', array(), false));
+            'ClassConst', array(), false));
         $this->assertTrue(ArgValidator::assertClassConstant(
-            '\ClassNoConst', array(), false));
+            'ClassNoConst', array(), false));
 
         $this->assertFalse(ArgValidator::assertClassConstant(
-            '\ClassNoConst', array('BAR'), false));
+            'ClassNoConst', array('BAR'), false));
         $this->assertFalse(ArgValidator::assertClassConstant(
-            '\ClassConst', array('BAR'), false));
+            'ClassConst', array('BAR'), false));
         $this->assertFalse(ArgValidator::assertClassConstant(
-            '\Foo', array(), false));
+            'Foo', array(), false));
     }
 
     /**
