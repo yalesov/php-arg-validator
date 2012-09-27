@@ -58,6 +58,8 @@ class Foo {
 
 ## Simple argument validation
 
+Validates that `$foo` is an integer, throwing an `InvalidArgumentException` if validation failed.
+
 ```php
 use Heartsentwined\ArgValidator\ArgValidator;
 
@@ -67,16 +69,20 @@ function foo($foo)
     // throw InvalidArgumentException if $foo is not int
     // do something
 }
+```
 
-function bar($bar)
+Validates that `$foo` is an integer, return boolean.
+
+```php
+use Heartsentwined\ArgValidator\ArgValidator;
+
+function foo($foo)
 {
-    $result = ArgValidator::assert($bar, 'int', false);
+    $result = ArgValidator::assert($foo, 'int', false);
     // $result = false if invalid
     // do something
 }
 ```
-
-Validates that `$foo` is an integer, throwing an `InvalidArgumentException` if validation failed.
 
 Full function signature:
 
@@ -87,7 +93,7 @@ public static function assert($arg, $checks, $exception = true)
 Valid argument types are specified through the `$checks` parameter. A string, or an array of the following accepted. `$arg` will be considered valid if it satisfies *any one* of the specified checks.
 
 - Flags
-    - `arrayof`: will check for an array of remaining specified types, instead of plain types, e.g. `array('arrayOf', 'string', 'int')` = an array of string, or an array of int. NOTE: Empty array will be considered valid
+    - `arrayof`: will check for an array of remaining specified types, instead of plain types, e.g. `array('arrayOf', 'string', 'int')` = an array of string, or an array of int. *Note: Empty array will be considered valid*
     - `min`, `max`
         - combine with `int`, `float`: min and max value
         - combine with `string`: min and max length
@@ -101,7 +107,7 @@ Valid argument types are specified through the `$checks` parameter. A string, or
     - `null`
     - `callable`
     - `notEmpty`: equivalent to `!empty()`
-    - (an array of scalars for in_array check), e.g. `array('foo', 'bar')` will check for `in_array($arg, array('foo', 'bar'))`. NOTE: `ArgValidator::assert($arg, array('foo', 'bar'))` will be interpreted as instanceof checks against `foo` and `bar`. To specify an in_array check, wrap it in another array: `ArgValidator::assert($arg, array(array('foo', 'bar')))`.
+    - (an array of scalars for in_array check), e.g. `array('foo', 'bar')` will check for `in_array($arg, array('foo', 'bar'))`. *Note: `ArgValidator::assert($arg, array('foo', 'bar'))` will be interpreted as instanceof checks against `foo` and `bar`. To specify an in_array check, wrap it in another array: `ArgValidator::assert($arg, array(array('foo', 'bar')))`.*
     - (a string): assumed to be an instanceof check, should be a fully-qualified name of Class/Interface
 
 ## "Named parameters" validation
@@ -142,7 +148,7 @@ class FooClass {
     const BAR = 2;
 }
 
-ArgValidator::assertClassConstant('\Foo\FooClass', array('FOO', 'BAR'));
+ArgValidator::assertClassConstant('Foo\FooClass', array('FOO', 'BAR'));
 // \Foo\FooClass must have the constants 'FOO' and 'BAR' set
 ```
 
@@ -175,4 +181,4 @@ Throw an `InvalidArgumentException` about the given variable name is not set:
 public static function throwIssetException($argName)
 ```
 
-Note: this function doesn't actually perform the `isset` check. I can't find a way to abstract the `isset` check away, without the variable being set in the first place (in order to act as argument to call this function with).
+*Note: this function doesn't actually perform the `isset` check. I can't find a way to abstract the `isset` check away, without the variable being set in the first place (in order to act as argument to call this function with).*
