@@ -8,7 +8,7 @@ class ArgValidator
     /**
      * assert that a given argument is of some type
      *
-     * @param mixed $arg argument to validate
+     * @param mixed        $arg  argument to validate
      * @param string|array $type argument valid types,
      *  one or more of the following:
      *  [FLAGS]
@@ -51,7 +51,7 @@ class ArgValidator
     public static function assert($arg, $checks, $exception = true)
     {
         $checksValid = false;
-        foreach ((array)$checks as $check) {
+        foreach ((array) $checks as $check) {
             if (!in_array($check, array('arrayOf', 'min', 'max'), true)) {
                 $checksValid = true;
                 break;
@@ -64,7 +64,7 @@ class ArgValidator
         }
 
         $valid = true;
-        if (in_array('arrayOf', (array)$checks, true)) {
+        if (in_array('arrayOf', (array) $checks, true)) {
             if (!is_array($arg)) {
                 $valid = false;
             } else {
@@ -88,6 +88,7 @@ class ArgValidator
                 self::assembleChecksError($checks)
             ));
         }
+
         return true;
     }
 
@@ -96,7 +97,7 @@ class ArgValidator
      * can handle isset() checks as well
      *
      * @see self::assert
-     * @param array $arg the array to validate
+     * @param array $arg    the array to validate
      * @param array $checks
      *  [(key of arg)] => (types)
      *      for types, additional key available:
@@ -118,7 +119,7 @@ class ArgValidator
     {
         foreach ($checks as $key => $memberChecks) {
             if (!isset($arg[$key])) {
-                if (in_array('notSet', (array)$memberChecks, true)) {
+                if (in_array('notSet', (array) $memberChecks, true)) {
                     continue;
                 } elseif (!$exception) {
                     return false;
@@ -144,6 +145,7 @@ class ArgValidator
                 return false;
             }
         }
+
         return true;
     }
 
@@ -154,16 +156,16 @@ class ArgValidator
      *
      * @see self::assert()
      *
-     * @param mixed $arg
-     * @param string|array $checks
+     * @param  mixed        $arg
+     * @param  string|array $checks
      * @return bool
      */
     protected static function checkArg($arg, $checks)
     {
-        $checks = (array)$checks;
+        $checks = (array) $checks;
 
-        $min = isset($checks['min']) ? (float)$checks['min'] : null;
-        $max = isset($checks['max']) ? (float)$checks['max'] : null;
+        $min = isset($checks['min']) ? (float) $checks['min'] : null;
+        $max = isset($checks['max']) ? (float) $checks['max'] : null;
         self::trimChecks($checks);
 
         foreach ($checks as $check) {
@@ -223,9 +225,9 @@ class ArgValidator
      * helper function for self::checkArg()
      * checks that $arg is within the specified range, if given
      *
-     * @param mixed $arg
-     * @param int|float|null $min set 'null' to skip min check
-     * @param int|float|null $max set 'null' to skip max check
+     * @param  mixed          $arg
+     * @param  int|float|null $min set 'null' to skip min check
+     * @param  int|float|null $max set 'null' to skip max check
      * @return bool
      */
     public static function checkNumRange($arg, $min, $max)
@@ -239,9 +241,9 @@ class ArgValidator
      * helper function for self::checkArg()
      * checks that string length of $arg is within the specified range
      *
-     * @param string $arg
-     * @param int|float|null $min set 'null' to skip min check
-     * @param int|float|null $max set 'null' to skip max check
+     * @param  string         $arg
+     * @param  int|float|null $min set 'null' to skip min check
+     * @param  int|float|null $max set 'null' to skip max check
      * @return bool
      */
     public static function checkStrlen($arg, $min, $max)
@@ -255,15 +257,15 @@ class ArgValidator
      * helper function for self::checkArg()
      * checks that array member count of $arg is within the specified range
      *
-     * @param array $arg
-     * @param int|float|null $min set 'null' to skip min check
-     * @param int|float|null $max set 'null' to skip max check
+     * @param  array          $arg
+     * @param  int|float|null $min set 'null' to skip min check
+     * @param  int|float|null $max set 'null' to skip max check
      * @return bool
      */
     public static function checkCount($arg, $min, $max)
     {
-        if ($min !== null && count((array)$arg) < $min) return false;
-        if ($max !== null && count((array)$arg) > $max) return false;
+        if ($min !== null && count((array) $arg) < $min) return false;
+        if ($max !== null && count((array) $arg) > $max) return false;
         return true;
     }
 
@@ -271,7 +273,7 @@ class ArgValidator
      * assert that a class exists
      *
      * @param string $className
-     * @param bool $exception = true
+     * @param bool   $exception = true
      *  if false,
      *  will return true instead of throw exception on failed assertion
      * @throws Exception\InvalidArgumentException
@@ -288,6 +290,7 @@ class ArgValidator
                 $className
             ));
         }
+
         return true;
     }
 
@@ -296,9 +299,9 @@ class ArgValidator
      * 1) class exists, and
      * 2) constants exist in the specified class
      *
-     * @param string $className
+     * @param string          $className
      * @param array of string $constants constant names
-     * @param bool $exception = true
+     * @param bool            $exception = true
      *  if true,
      *  will return false instead of throw exception on failed assertion
      * @return void
@@ -322,6 +325,7 @@ class ArgValidator
                 ));
             }
         }
+
         return true;
     }
 
@@ -349,7 +353,7 @@ class ArgValidator
      * build a human-readable string of function caller
      * from a debug_backtrace() array given
      *
-     * @param array $backtrace
+     * @param  array                              $backtrace
      * @throws Exception\InvalidArgumentException
      * @return string
      */
@@ -377,20 +381,20 @@ class ArgValidator
      * helper function for self::assert()
      * assemble a human-readable list of valid types
      *
-     * @param array|string $checks
+     * @param  array|string $checks
      * @return string
      */
     protected static function assembleChecksError($checks)
     {
-        $checks = (array)$checks;
+        $checks = (array) $checks;
 
-        $min = isset($checks['min']) ? (float)$checks['min'] : null;
-        $max = isset($checks['max']) ? (float)$checks['max'] : null;
+        $min = isset($checks['min']) ? (float) $checks['min'] : null;
+        $max = isset($checks['max']) ? (float) $checks['max'] : null;
         $oriChecks = $checks;
         self::trimChecks($checks);
 
         $validTypes = array();
-        foreach ((array)$checks as $check) {
+        foreach ((array) $checks as $check) {
             if (is_array($check)) {
                 $validTypes[] = 'one of ' . implode(', ', $check);
                 continue;
@@ -454,7 +458,7 @@ class ArgValidator
      */
     public static function trimChecks(&$checks)
     {
-        $checks = (array)$checks;
+        $checks = (array) $checks;
         if (isset($checks['min'])) unset($checks['min']);
         if (isset($checks['max'])) unset($checks['max']);
         if (($k = array_search('arrayOf', $checks)) !== false) {

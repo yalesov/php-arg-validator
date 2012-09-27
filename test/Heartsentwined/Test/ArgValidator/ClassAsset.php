@@ -1,5 +1,6 @@
 <?php
 class ClassNoConst {}
-class ClassConst {
+class ClassConst
+{
     const FOO = 'foo';
 }
