@@ -29,6 +29,8 @@ class ArgValidator
      *  - 'array'
      *  - 'null'
      *  - 'callable'
+     *  - 'bool'
+     *  - 'resource'
      *  - 'notEmpty'
      *  - (an array of scalars for in_array check)
      *    e.g. array('foo', 'bar') will check for
@@ -209,6 +211,12 @@ class ArgValidator
                     break;
                 case 'callable':
                     if (is_callable($arg)) return true;
+                    break;
+                case 'bool':
+                    if (is_bool($arg)) return true;
+                    break;
+                case 'resource':
+                    if (is_resource($arg)) return true;
                     break;
                 case 'notEmpty':
                     if (!empty($arg)) return true;
