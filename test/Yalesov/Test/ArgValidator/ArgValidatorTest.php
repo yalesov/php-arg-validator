@@ -351,6 +351,62 @@ class ArgValidatorTest extends \PHPUnit_Framework_TestCase
       ArgValidator::assert(new \StdClass, 'callable', false));
   }
 
+  public function testBool()
+  {
+    $this->assertTrue(
+      ArgValidator::assert(true, 'bool', false));
+    $this->assertTrue(
+      ArgValidator::assert(false, 'bool', false));
+
+    $this->assertFalse(
+      ArgValidator::assert(1, 'bool', false));
+    $this->assertFalse(
+      ArgValidator::assert(1.0, 'bool', false));
+    $this->assertFalse(
+      ArgValidator::assert('string', 'bool', false));
+    $this->assertFalse(
+      ArgValidator::assert('', 'bool', false));
+    $this->assertFalse(
+      ArgValidator::assert(array(), 'bool', false));
+    $this->assertFalse(
+      ArgValidator::assert(null, 'bool', false));
+    $this->assertFalse(
+      ArgValidator::assert(function(){}, 'bool', false));
+    $this->assertFalse(
+      ArgValidator::assert(new \StdClass, 'bool', false));
+  }
+
+  public function testResource()
+  {
+    $resource = fopen('data://text/plain;base64,', 'r');
+
+    $this->assertTrue(
+      ArgValidator::assert($resource, 'resource', false));
+
+    $this->assertFalse(
+      ArgValidator::assert(1, 'resource', false));
+    $this->assertFalse(
+      ArgValidator::assert(1.0, 'resource', false));
+    $this->assertFalse(
+      ArgValidator::assert('string', 'resource', false));
+    $this->assertFalse(
+      ArgValidator::assert('', 'resource', false));
+    $this->assertFalse(
+      ArgValidator::assert(array(), 'resource', false));
+    $this->assertFalse(
+      ArgValidator::assert(true, 'callable', false));
+    $this->assertFalse(
+      ArgValidator::assert(false, 'callable', false));
+    $this->assertFalse(
+      ArgValidator::assert(null, 'resource', false));
+    $this->assertFalse(
+      ArgValidator::assert(function(){}, 'resource', false));
+    $this->assertFalse(
+      ArgValidator::assert(new \StdClass, 'resource', false));
+
+    fclose($resource);
+  }
+
   public function testNotEmpty()
   {
     $this->assertTrue(
