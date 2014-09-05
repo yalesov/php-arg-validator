@@ -3,7 +3,7 @@
     "description": "Validate function arguments, extending typehinting capabilities of PHP.",
     "license": "GPL-3.0",
     "keywords": ["argument", "validator", "validate", "typehint", "typehinting"],
-    "homepage": "https://github.com/heartsentwined/arg-validator",
+    "homepage": "https://github.com/heartsentwined/php-arg-validator",
     "authors": [
         {
             "name": "heartsentwined",
