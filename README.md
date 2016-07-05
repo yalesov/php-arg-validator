@@ -37,8 +37,8 @@ Declaring required constants in classes (interface-style function):
 
 ```php
 class Foo {
-    /* const BAR required */
-    /* const BAZ required */
+  /* const BAR required */
+  /* const BAZ required */
 }
 ```
 
@@ -48,9 +48,9 @@ class Foo {
 
 ```json
 {
-    "require": {
-        "yalesov/arg-validator": "2.*"
-    }
+  "require": {
+    "yalesov/arg-validator": "2.*"
+  }
 }
 ```
 
@@ -65,9 +65,9 @@ use Yalesov\ArgValidator\ArgValidator;
 
 function foo($foo)
 {
-    ArgValidator::assert($foo, 'int');
-    // throw InvalidArgumentException if $foo is not int
-    // do something
+  ArgValidator::assert($foo, 'int');
+  // throw InvalidArgumentException if $foo is not int
+  // do something
 }
 ```
 
@@ -78,9 +78,9 @@ use Yalesov\ArgValidator\ArgValidator;
 
 function foo($foo)
 {
-    $result = ArgValidator::assert($foo, 'int', false);
-    // $result = false if invalid
-    // do something
+  $result = ArgValidator::assert($foo, 'int', false);
+  // $result = false if invalid
+  // do something
 }
 ```
 
@@ -93,22 +93,22 @@ public static function assert($arg, $checks, $exception = true)
 Valid argument types are specified through the `$checks` parameter. A string, or an array of the following accepted. `$arg` will be considered valid if it satisfies *any one* of the specified checks.
 
 - Flags
-    - `arrayof`: will check for an array of remaining specified types, instead of plain types, e.g. `array('arrayOf', 'string', 'int')` = an array of string, or an array of int. *Note: Empty array will be considered valid*
-    - `min`, `max`
-        - combine with `int`, `float`: min and max value
-        - combine with `string`: min and max length
-        - combine with `array`: min and max count
+  - `arrayof`: will check for an array of remaining specified types, instead of plain types, e.g. `array('arrayOf', 'string', 'int')` = an array of string, or an array of int. *Note: Empty array will be considered valid*
+  - `min`, `max`
+    - combine with `int`, `float`: min and max value
+    - combine with `string`: min and max length
+    - combine with `array`: min and max count
 - Types
-    - `int`
-    - `float`
-    - `numeric`
-    - `string`
-    - `array`
-    - `null`
-    - `callable`
-    - `notEmpty`: equivalent to `!empty()`
-    - (an array of scalars for in_array check), e.g. `array('foo', 'bar')` will check for `in_array($arg, array('foo', 'bar'))`. *Note: `ArgValidator::assert($arg, array('foo', 'bar'))` will be interpreted as instanceof checks against `foo` and `bar`. To specify an in_array check, wrap it in another array: `ArgValidator::assert($arg, array(array('foo', 'bar')))`.*
-    - (a string): assumed to be an instanceof check, should be a fully-qualified name of Class/Interface
+  - `int`
+  - `float`
+  - `numeric`
+  - `string`
+  - `array`
+  - `null`
+  - `callable`
+  - `notEmpty`: equivalent to `!empty()`
+  - (an array of scalars for in_array check), e.g. `array('foo', 'bar')` will check for `in_array($arg, array('foo', 'bar'))`. *Note: `ArgValidator::assert($arg, array('foo', 'bar'))` will be interpreted as instanceof checks against `foo` and `bar`. To specify an in_array check, wrap it in another array: `ArgValidator::assert($arg, array(array('foo', 'bar')))`.*
+  - (a string): assumed to be an instanceof check, should be a fully-qualified name of Class/Interface
 
 ## "Named parameters" validation
 
@@ -117,14 +117,14 @@ use Yalesov\ArgValidator\ArgValidator;
 
 function foo(array $params)
 {
-    ArgValidator::arrayAssert($params, array(
-        'foo' => 'float',
-        'bar' => array('string', 'notSet'),
-        'baz' => array('int', 'string', 'min' => 2),
-    ));
-    // $params['foo'] should be a float
-    // $params['bar'] should be a string, if set, or not set at all
-    // $params['baz'] can be either an int (>=2), or a string (strlen >= 2)
+  ArgValidator::arrayAssert($params, array(
+    'foo' => 'float',
+    'bar' => array('string', 'notSet'),
+    'baz' => array('int', 'string', 'min' => 2),
+  ));
+  // $params['foo'] should be a float
+  // $params['bar'] should be a string, if set, or not set at all
+  // $params['baz'] can be either an int (>=2), or a string (strlen >= 2)
 }
 ```
 
@@ -144,8 +144,8 @@ namespace Foo;
 use Yalesov\ArgValidator\ArgValidator;
 
 class FooClass {
-    const FOO = 'foo';
-    const BAR = 2;
+  const FOO = 'foo';
+  const BAR = 2;
 }
 
 ArgValidator::assertClassConstant('Foo\FooClass', array('FOO', 'BAR'));
