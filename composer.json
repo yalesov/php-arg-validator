@@ -11,6 +11,9 @@
   "require": {
     "php": ">=5.3.3"
   },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
   "autoload": {
     "psr-0": {
       "Yalesov\\ArgValidator": "src/"
