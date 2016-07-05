@@ -1,7 +1,7 @@
 <?php
-namespace Heartsentwined\ArgValidator;
+namespace Yalesov\ArgValidator;
 
-use Heartsentwined\ArgValidator\Exception;
+use Yalesov\ArgValidator\Exception;
 
 class ArgValidator
 {

@@ -1,6 +1,6 @@
-# Heartsentwined\ArgValidator
+# Yalesov\ArgValidator
 
-[![Build Status](https://secure.travis-ci.org/heartsentwined/arg-validator.png)](http://travis-ci.org/heartsentwined/arg-validator)
+[![Build Status](https://secure.travis-ci.org/yalesov/arg-validator.png)](http://travis-ci.org/yalesov/arg-validator)
 
 Solving several function argument validation/typehinting issues in PHP:
 
@@ -49,7 +49,7 @@ class Foo {
 ```json
 {
     "require": {
-        "heartsentwined/arg-validator": "1.*"
+        "yalesov/arg-validator": "1.*"
     }
 }
 ```
@@ -61,7 +61,7 @@ class Foo {
 Validates that `$foo` is an integer, throwing an `InvalidArgumentException` if validation failed.
 
 ```php
-use Heartsentwined\ArgValidator\ArgValidator;
+use Yalesov\ArgValidator\ArgValidator;
 
 function foo($foo)
 {
@@ -74,7 +74,7 @@ function foo($foo)
 Validates that `$foo` is an integer, return boolean.
 
 ```php
-use Heartsentwined\ArgValidator\ArgValidator;
+use Yalesov\ArgValidator\ArgValidator;
 
 function foo($foo)
 {
@@ -113,7 +113,7 @@ Valid argument types are specified through the `$checks` parameter. A string, or
 ## "Named parameters" validation
 
 ```php
-use Heartsentwined\ArgValidator\ArgValidator;
+use Yalesov\ArgValidator\ArgValidator;
 
 function foo(array $params)
 {
@@ -141,7 +141,7 @@ Valid argument types are same as above, except with the addition of a `notSet` t
 ```php
 namespace Foo;
 
-use Heartsentwined\ArgValidator\ArgValidator;
+use Yalesov\ArgValidator\ArgValidator;
 
 class FooClass {
     const FOO = 'foo';

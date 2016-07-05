@@ -1,5 +1,5 @@
 <?php
-namespace Heartsentwined\ArgValidator;
+namespace Yalesov\ArgValidator;
 
 interface ExceptionInterface
 {

@@ -1,22 +1,30 @@
 {
-    "name": "heartsentwined/arg-validator",
+    "name": "yalesov/arg-validator",
     "description": "Validate function arguments, extending typehinting capabilities of PHP.",
-    "license": "GPL-3.0",
     "keywords": ["argument", "validator", "validate", "typehint", "typehinting"],
-    "homepage": "https://github.com/heartsentwined/arg-validator",
     "authors": [
         {
-            "name": "heartsentwined",
-            "email": "heartsentwined@cogito-lab.com",
-            "role": "Developer"
+            "name": "Yulij Andreevich Lesov",
+            "email": "yalesov@gmail.com"
         }
     ],
-    "autoload": {
-        "psr-0": {
-            "Heartsentwined\\ArgValidator": "src/"
-        }
-    },
     "require": {
         "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "Yalesov\\ArgValidator": "src/"
+        }
+    },
+    "license": "ISC",
+    "homepage": "https://github.com/yalesov/php-arg-validator",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/yalesov/php-arg-validator"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/yalesov/php-arg-validator/issues"
     }
 }

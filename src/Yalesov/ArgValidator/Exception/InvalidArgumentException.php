@@ -1,7 +1,7 @@
 <?php
-namespace Heartsentwined\ArgValidator\Exception;
+namespace Yalesov\ArgValidator\Exception;
 
-use Heartsentwined\ArgValidator\ExceptionInterface;
+use Yalesov\ArgValidator\ExceptionInterface;
 
 class InvalidArgumentException
     extends \InvalidArgumentException

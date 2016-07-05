@@ -1,7 +1,7 @@
 <?php
-namespace Heartsentwined\Test\ArgValidator;
+namespace Yalesov\Test\ArgValidator;
 
-use Heartsentwined\ArgValidator\ArgValidator;
+use Yalesov\ArgValidator\ArgValidator;
 
 class ArgValidatorTest extends \PHPUnit_Framework_TestCase
 {
