@@ -2,5 +2,5 @@
 class ClassNoConst {}
 class ClassConst
 {
-    const FOO = 'foo';
+  const FOO = 'foo';
 }
