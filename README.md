@@ -1,6 +1,6 @@
 # Yalesov\ArgValidator
 
-[![Build Status](https://secure.travis-ci.org/yalesov/arg-validator.png)](http://travis-ci.org/yalesov/arg-validator)
+[![Build Status](https://travis-ci.org/yalesov/php-arg-validator.svg)](https://travis-ci.org/yalesov/php-arg-validator)
 
 Solving several function argument validation/typehinting issues in PHP:
 
