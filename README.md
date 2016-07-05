@@ -49,7 +49,7 @@ class Foo {
 ```json
 {
     "require": {
-        "yalesov/arg-validator": "1.*"
+        "yalesov/arg-validator": "2.*"
     }
 }
 ```
